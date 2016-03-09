@@ -1,8 +1,8 @@
 (function() {
 	function AlbumCtrl() {
-		albumData = [];
+		this.albumData = [];
 		for (var i = 0; i < 12; i++) {
-			albumData.push(angular.copy(albumPicasso));
+			this.albumData.push(angular.copy(albumPicasso));
 		}
 	}
 
