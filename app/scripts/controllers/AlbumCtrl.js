@@ -4,6 +4,7 @@
 		// for (var i = 0; i < 12; i++) {
 		// 	this.albumData.push(angular.copy(albumPicasso));
 		// }
+		return this.albumData;
 	}
 
 	angular
