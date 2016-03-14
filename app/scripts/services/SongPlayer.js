@@ -38,7 +38,7 @@
 	**/
 
 	var playSong = function(song) {
-		currentBuzzObject.play(song);
+		currentBuzzObject.play();
 		song.playing = true;
 	};
 

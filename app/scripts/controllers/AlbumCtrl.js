@@ -2,7 +2,7 @@
 	function AlbumCtrl(Fixtures, SongPlayer) {
 		//inject SongPlayer
 		this.albumData = Fixtures.getAlbum();
-		this.SongPlayer = SongPlayer;
+		this.songPlayer = SongPlayer;
 	}
 
 	angular
