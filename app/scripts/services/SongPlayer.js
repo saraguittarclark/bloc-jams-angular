@@ -56,7 +56,7 @@
 
 		} else if (currentSong === song) {
 			if (currentBuzzObject.isPaused()) {
-				currentBuzzObject.play();
+				playSong();
 			}
 		}
 	};
@@ -67,9 +67,13 @@
 	@param {Object} song
 	**/
 
-	SongPlayer.pause = function(song) {
+	var pauseSong = function(song) {
 		currentBuzzObject.pause();
 		song.playing = false;
+	};
+
+	SongPlayer.pause = function(song) {
+		pauseSong();
 	};
 
 	return SongPlayer;
