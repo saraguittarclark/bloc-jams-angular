@@ -10,6 +10,10 @@
 
 		var currentBuzzObject = null;
 		SongPlayer.currentSong = null;
+		SongPlayer.volume = 80;
+		//80 on load
+		SongPlayer.maxVolume = 100;
+		//max volume
 
 		/**
 		@desc Current Playback time in seconds of currently playing song
@@ -42,6 +46,8 @@
 					SongPlayer.currentTime = currentBuzzObject.getTime();
 				});
 			});
+
+			// setVolume(SongPlayer.volume);
 
 			SongPlayer.currentSong = song;
 		};
@@ -159,13 +165,31 @@
 		};
 
 		/**
-		@func stopSong
+		@function stopSong
 		@desc stops currently playing song and resets to null
 		**/
 
 		var stopSong = function() {
 			currentBuzzObject.stop()
 			SongPlayer.currentSong.playing = null;
+		};
+
+		/**
+		@function setVolume
+		@desc if song is playing, reset volume dependent on slider
+		@param volume
+		**/
+
+		SongPlayer.setVolume = function(volume) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setVolume(volume);
+			}
+
+			// currentBuzzObject.bind('volumeupdate', function() {
+			// 	$rootScope.$apply(function(){
+			// 		SongPlayer.volume = currentBuzzObject.getVolume();
+			// 	})
+			// })
 		};
 
 		return SongPlayer;
