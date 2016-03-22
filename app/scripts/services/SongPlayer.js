@@ -1,5 +1,5 @@
 (function() {
-	function SongPlayer(Fixtures) {
+	function SongPlayer($rootScope, Fixtures) {
 		var SongPlayer = {};
 		var currentAlbum = Fixtures.getAlbum();
 
@@ -10,6 +10,16 @@
 
 		var currentBuzzObject = null;
 		SongPlayer.currentSong = null;
+		SongPlayer.volume = 80;
+		//80 on load
+		SongPlayer.maxVolume = 100;
+		//max volume
+
+		/**
+		@desc Current Playback time in seconds of currently playing song
+		@type {Number}
+		**/
+		SongPlayer.currentTime = null;
 
 		/**
 		@function setSong
@@ -27,9 +37,14 @@
 				preload: true
 			});
 
-			// SongPlayer.currentSong.bind("ended", function () {
-			// 	SongPlayer.next();
-			// });
+
+			currentBuzzObject.bind('timeupdate', function() {
+				$rootScope.$apply(function() {
+					SongPlayer.currentTime = currentBuzzObject.getTime();
+				});
+			});
+
+			currentBuzzObject.setVolume(80);
 
 			SongPlayer.currentSong = song;
 		};
@@ -42,7 +57,6 @@
 		var getSongIndex = function(song) {
 			return currentAlbum.songs.indexOf(song);
 		};
-
 
 		/**
 		@function playSong
@@ -135,7 +149,19 @@
 		};
 
 		/**
-		@func stopSong
+		@function setCurrentTime
+		@desc Set current time (in seconds) of currently playing song
+		@param {Number} time
+		**/
+
+		SongPlayer.setCurrentTime = function(time)  {
+			if (currentBuzzObject) {
+				currentBuzzObject.setTime(time);
+			}
+		};
+
+		/**
+		@function stopSong
 		@desc stops currently playing song and resets to null
 		**/
 
@@ -144,10 +170,22 @@
 			SongPlayer.currentSong.playing = null;
 		};
 
+		/**
+		@function setVolume
+		@desc if song is playing, reset volume dependent on slider
+		@param volume
+		**/
+
+		SongPlayer.setVolume = function(volume) {
+			if (currentBuzzObject) {
+				currentBuzzObject.setVolume(volume);
+			}
+		};
+
 		return SongPlayer;
 	}
 
 	angular
 		.module('blocJams')
-		.factory('SongPlayer', SongPlayer);
+		.factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();
