@@ -37,6 +37,21 @@
 					return percent + "%";
 				};
 
+				
+				// var percentString = function() {
+				// 	if (seekBar.parent().attr('class') == 'seek-control') {
+				// 		var value = scope.value;
+				// 		var max = scope.max;
+				// 		var percent = value / max * 100;
+				// 		return percent + "%";
+				// 	} else {
+				// 		var value = scope.value;
+				// 		var max = scope.max;
+				// 		var percent = value / max * 100;
+				// 		return percent;
+				// 	}
+				// };
+
 				scope.fillStyle = function() {
 					return {width: percentString()};
 				};
@@ -71,6 +86,8 @@
 						scope.onChange( {value: newValue} );
 					}
 				};
+
+				
 			}
 		};
 	}

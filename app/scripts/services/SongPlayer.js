@@ -37,9 +37,6 @@
 				preload: true
 			});
 
-			// SongPlayer.currentSong.bind("ended", function () {
-			// 	SongPlayer.next();
-			// });
 
 			currentBuzzObject.bind('timeupdate', function() {
 				$rootScope.$apply(function() {
@@ -47,7 +44,7 @@
 				});
 			});
 
-			// setVolume(SongPlayer.volume);
+			currentBuzzObject.setVolume(80);
 
 			SongPlayer.currentSong = song;
 		};
@@ -60,7 +57,6 @@
 		var getSongIndex = function(song) {
 			return currentAlbum.songs.indexOf(song);
 		};
-
 
 		/**
 		@function playSong
@@ -184,12 +180,6 @@
 			if (currentBuzzObject) {
 				currentBuzzObject.setVolume(volume);
 			}
-
-			// currentBuzzObject.bind('volumeupdate', function() {
-			// 	$rootScope.$apply(function(){
-			// 		SongPlayer.volume = currentBuzzObject.getVolume();
-			// 	})
-			// })
 		};
 
 		return SongPlayer;
