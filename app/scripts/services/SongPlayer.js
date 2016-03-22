@@ -47,6 +47,10 @@
 			currentBuzzObject.setVolume(80);
 
 			SongPlayer.currentSong = song;
+
+			currentBuzzObject.bind('ended', function() {
+				SongPlayer.next();
+			});
 		};
 
 		/**
