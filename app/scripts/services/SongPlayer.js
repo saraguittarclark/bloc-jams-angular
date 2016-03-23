@@ -47,6 +47,10 @@
 			currentBuzzObject.setVolume(80);
 
 			SongPlayer.currentSong = song;
+
+			currentBuzzObject.bind('ended', function() {
+				SongPlayer.next();
+			});
 		};
 
 		/**
@@ -179,6 +183,38 @@
 		SongPlayer.setVolume = function(volume) {
 			if (currentBuzzObject) {
 				currentBuzzObject.setVolume(volume);
+			}
+		};
+
+		/**
+		@function mute
+		@desc if song is playing, toggles mute and logs to console
+		**/
+
+		SongPlayer.mute = function() {
+			if (currentBuzzObject) {
+				currentBuzzObject.toggleMute();
+				if (currentBuzzObject.isMuted()) {
+					console.log("The sound is muted!");
+				} else {
+					console.log("The sound is loud!")
+				}
+
+			} 
+		};
+
+		/**
+		@function checkMute
+		@desc returns true if currentBuzzObject is muted, false if not
+		**/
+
+		SongPlayer.checkMute = function() {
+			if (currentBuzzObject) {
+				if (currentBuzzObject.isMuted()) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		};
 
