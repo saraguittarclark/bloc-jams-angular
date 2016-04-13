@@ -12,7 +12,7 @@ html {
 }
 
 body {
-    background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
+    background-image: url(../assets/images/blurred_backgrounds/blur_bg_1.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
@@ -34,6 +34,11 @@ body {
     position: relative;
     left: 2rem;
     cursor: pointer;
+}
+
+#logo {
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: 2rem;
 }
 
 .navbar .links-container {
